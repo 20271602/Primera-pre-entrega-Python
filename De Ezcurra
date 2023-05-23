@@ -1,0 +1,45 @@
+usuarios=[]
+
+def login ():   
+    print("=====================================\n              INICIAR SESION                   \n=====================================")
+    usuario= input("ingrese su nombre de usuario:" )
+    contrasenia= input("ingrese su contrasenia:" )
+    a=True
+    for user in usuarios:
+        if usuario == user["usuario"]:
+            a=False
+            if contrasenia == user["contrasenia"]:
+                print("login exitoso!")
+                a=False
+            else:
+                print("contrasenia incorrecta")
+                login()
+    if a:
+        print("usuario no existe")
+        login()
+        
+        
+def register ():
+    print("=====================================\n               REGISTRATE                 \n=====================================")
+    user_name= input("ingrese un nombre de usuario: ")
+    password= input("ingrese una contrasenia: ")
+    dic={"usuario":user_name, "contrasenia":password}
+    usuarios.append(dic)
+
+ask_data = True
+def init():
+    print("=====================================\n                 MENU                    \n=====================================")
+    value=input("Para registrarse ingrese 1. \nPara iniciar sesion ingrese 2.  \nPara salir del menu ingrese 3.\n")
+    if value == "1":
+        register ()
+    elif value == "2":
+        login ()
+    elif value == "3":
+        global ask_data 
+        ask_data = False
+    else:
+        print(f"ingrese 1 o 2, NO INGRESE => {value} ")
+        init()
+
+while ask_data :
+    init()
